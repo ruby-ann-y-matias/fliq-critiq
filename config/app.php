@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'fliqcritiq'),
 
     /*
     |--------------------------------------------------------------------------
@@ -104,7 +104,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('APP_KEY', 'base64:MoBazbITZ1p4OkwCrHst8uZYaqrAqXfq23PKQs/B8BM='),
 
     'cipher' => 'AES-256-CBC',
 

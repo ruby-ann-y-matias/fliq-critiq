@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\FLick;
+use App\Flick;
 
 class FlicksTableSeeder extends Seeder
 {
@@ -751,7 +751,7 @@ class FlicksTableSeeder extends Seeder
         $flick->year = '2017';
         $flick->age_limit = '16+';
         $flick->duration = '2 Seasons';
-        $flick->save();        
+        $flick->save();
 
         $flick = new Flick();
         $flick->title = 'Steel Rain';
@@ -1033,6 +1033,6 @@ class FlicksTableSeeder extends Seeder
         $flick->age_limit = '7+';
         $flick->duration = '1h 45m';
         $flick->save();
-       
+
     }
 }
