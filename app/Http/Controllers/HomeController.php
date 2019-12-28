@@ -29,12 +29,12 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
 
         return view('home');
     }
 
-    function showFeed() {
+    public function showFeed() {
         if (Auth::check() ) {
 
             $me = Auth::user();
@@ -48,7 +48,7 @@ class HomeController extends Controller
                 $flicks = $influencer->flicks()->distinct()->get();
                 // dd($flicks);
                 foreach ($flicks as $flick) {
-                    
+
                     if (!isset($feed[$flick->id])) {
                         $feed[$flick->id] = array();
                     }
@@ -94,7 +94,7 @@ class HomeController extends Controller
         }
     }
 
-    function viewCurrent() {
+    public function viewCurrent() {
         $user = Auth::user();
 
         $followers = $user->followers()->distinct()->get();
@@ -103,7 +103,7 @@ class HomeController extends Controller
         return view('auth.profile', compact('user', 'followers', 'influencers'));
     }
 
-    function editSelf(Request $request, $id) {
+    public function editSelf(Request $request, $id) {
         // dd($request);
         // echo $id;
 
@@ -143,13 +143,13 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    function retrieve($id) {
+    public function retrieve($id) {
         $user = User::find($id);
 
         return view('auth.confirm-delete', compact('user'));
     }
 
-    function delete($id) {
+    public function delete($id) {
         $user = User::find($id);
         // echo $user->username;
         $user->delete();
@@ -159,7 +159,7 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    function addToBinge(Request $request, $id) {
+    public function addToBinge(Request $request, $id) {
 
         if (Auth::check() ) {
             $user = Auth::user();
@@ -175,14 +175,14 @@ class HomeController extends Controller
         }
     }
 
-    function removeFromBinge(Request $request, $id) {
+    public function removeFromBinge(Request $request, $id) {
         // dd($request);
         Auth::user()->flicks()->detach($request->flick_id);
 
         return redirect()->back();
     }
 
-    function showMatch() {
+    public function showMatch() {
 
         if (Auth::check()) {
 
@@ -240,7 +240,7 @@ class HomeController extends Controller
         $users_rank = array();
 
         foreach ($matches as $user => $match) {
-                
+
                 $i = count($match);
 
                 array_push($users_rank, ['user' => $user, 'rank' => $i]);
@@ -274,11 +274,11 @@ class HomeController extends Controller
         }
 
         // dd($collect_users);
- 
+
         return view('flicks.discover', compact('collected_users', 'ownBinges'));
 
         } else {
             return view('home');
-        } 
+        }
     }
 }

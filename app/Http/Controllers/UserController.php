@@ -13,7 +13,12 @@ use Auth;
 
 class UserController extends Controller
 {
-    function showList() {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function showList() {
     	$users = User::all();
 
         if (Auth::check()) {
@@ -28,7 +33,7 @@ class UserController extends Controller
             }
 
             // dd($following);
-            
+
         } else {
             $following = [];
         }
@@ -36,7 +41,7 @@ class UserController extends Controller
         return view('flicks.bingelists', compact('users', 'following'));
     }
 
-    function discover($id) {
+    public function discover($id) {
     	$user = User::find($id);
     	// dd($user);
         $followers = $user->followers()->distinct()->get();
@@ -45,8 +50,8 @@ class UserController extends Controller
     	return view('auth.profile', compact('user', 'followers', 'influencers'));
     }
 
-    function followUser(Request $request, $id) {
-        
+    public function followUser(Request $request, $id) {
+
         $me = Auth::user()->id;
         $influencer = User::find($request->id);
 
@@ -57,10 +62,10 @@ class UserController extends Controller
         if ($request->btn_text == 'Unfollow') {
             $influencer->followers()->detach($me);
             echo 'Follow';
-        }   
+        }
     }
 
-    function getFollowers($id) {
+    public function getFollowers($id) {
         $user = User::find($id);
         // echo $user->username;
 
@@ -69,7 +74,7 @@ class UserController extends Controller
         return view('auth.followers', compact('followers'));
     }
 
-    function getFollowing($id) {
+    public function getFollowing($id) {
         $user = User::find($id);
         // echo $user->username;s
         $influencers = $user->following()->distinct()->get();
@@ -77,17 +82,17 @@ class UserController extends Controller
         return view('auth.following', compact('influencers', 'user'));
     }
 
-    function unfollowUser(Request $request, $id) {
+    public function unfollowUser(Request $request, $id) {
         $me = Auth::user()->id;
 
         $influencer = User::find($request->influencer_id);
-        
+
         $influencer->followers()->detach($me);
 
         return redirect()->back();
     }
 
-    function like(Request $request) {
+    public function like(Request $request) {
         // echo $id;
         // dd($request);
 
@@ -96,9 +101,9 @@ class UserController extends Controller
             $user = Auth::user();
             $user->likes()->attach($request->comment_id);
             $likes = Like::where('comment_id', '=', $request->comment_id)->get();
-            
+
             return response()->json(['likes' => $likes]);
-            
+
         } else {
 
             $user = Auth::user();
@@ -110,7 +115,7 @@ class UserController extends Controller
         }
     }
 
-    function reply(Request $request) {
+    public function reply(Request $request) {
         $me = Auth::user()->id;
         // dd($request);
         $reply = new Reply();
@@ -122,16 +127,16 @@ class UserController extends Controller
         return view('auth.reply', compact('reply'));
     }
 
-    function replyLike(Request $request) {
+    public function replyLike(Request $request) {
 
         if ($request->btn_text == 'LIKE') {
 
             $user = Auth::user();
             $user->replylikes()->attach($request->reply_id);
             $likes = ReplyLike::where('reply_id', '=', $request->reply_id)->get();
-            
+
             return response()->json(['likes' => $likes]);
-            
+
         } else {
 
             $user = Auth::user();
@@ -143,7 +148,7 @@ class UserController extends Controller
         }
     }
 
-    function editReply(Request $request) {
+    public function editReply(Request $request) {
 
         $reply = Reply::find($request->reply_id);
 
@@ -153,7 +158,7 @@ class UserController extends Controller
         return view('auth.reply', compact('reply'));
     }
 
-    function deleteReply(Request $request) {
+    public function deleteReply(Request $request) {
 
         $reply = Reply::find($request->reply_id);
         $reply->delete();
@@ -161,7 +166,7 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    function newComment(Request $request) {
+    public function newComment(Request $request) {
 
         $me = Auth::user()->id;
 
@@ -175,7 +180,7 @@ class UserController extends Controller
 
     }
 
-    function editComment(Request $request) {
+    public function editComment(Request $request) {
 
         $comment = Comment::find($request->comment_id);
 
@@ -185,7 +190,7 @@ class UserController extends Controller
         return view('auth.new-comment', compact('comment'));
     }
 
-    function commentDelete(Request $request) {
+    public function commentDelete(Request $request) {
 
         $comment = Comment::find($request->comment_id);
 
