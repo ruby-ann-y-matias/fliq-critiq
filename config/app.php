@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'fliqcritiq'),
+    'name' => env('APP_NAME', 'FliQ CritiQ'),
 
     /*
     |--------------------------------------------------------------------------

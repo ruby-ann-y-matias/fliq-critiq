@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
-  <title>FliQ CritiQ - @yield('title')</title>
+  <title>{{ config('app.name', 'FliQ CritiQ') }} - @yield('title')</title>
 
   <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
   <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
@@ -56,7 +56,7 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">
 
         @if ( Auth::check() )
-        
+
         <li><a href="{{ url('/feed') }}"><i class="material-icons">home</i> Home</a></li>
         <li><a href="{{ url('/profile') }}"><i class="material-icons">account_circle</i> Profile</a></li>
         <li>
@@ -71,13 +71,13 @@
           {{ csrf_field() }}
         </form>
         </li>
-        
+
         @else
         <li><a href="{{ url('/') }}"><i class="material-icons">home</i> Home</a></li>
         <li><a href="{{ url('/login') }}"><i class="material-icons">verified_user</i> Login</a></li>
         <li><a href="{{ url('/register') }}"><i class="material-icons">verified_user</i> Register</a></li>
         @endif
-      
+
       </ul>
 
     {{-- MOBILE NAV --}}
@@ -87,7 +87,7 @@
       <li><a href="{{ url('/discover') }}"><i class="material-icons">stars</i> Discover</a></li>
 
       @if ( Auth::check() )
-      
+
       <li><a href="{{ url('/home') }}"><i class="material-icons">home</i> Home</a></li>
       <li><a href="{{ url('/profile') }}"><i class="material-icons">account_circle</i> Profile</a></li>
       <li>
@@ -116,8 +116,8 @@
     <h1>@yield('title')</h1>
 
     <div class="container">
-      @yield('main_content') 
-    </div> 
+      @yield('main_content')
+    </div>
 </main>
 
 <footer class="page-footer">
@@ -126,7 +126,7 @@
       <div class="col l6 s12">
         <h5 class="white-text">FliQ CritiQ</h5>
         <p class="grey-text text-lighten-4">
-        FliQ CritiQ is a community that loves motion pictures aka flicks. It uses a simple algorithm to match members with people who have the same viewing tastes as they do so they can share bingelists with each other. Adulting is hard enough as it is. Every hour counts. FliQ CritiQ wants to help you spend downtime more chill than you can ever be. 
+        FliQ CritiQ is a community that loves motion pictures aka flicks. It uses a simple algorithm to match members with people who have the same viewing tastes as they do so they can share bingelists with each other. Adulting is hard enough as it is. Every hour counts. FliQ CritiQ wants to help you spend downtime more chill than you can ever be.
         </p>
 
         <p>The premise is simple. Tell us what you like in flicks.</p>
@@ -156,7 +156,7 @@
 
 
 
-<!-- Import jQuery -->      
+<!-- Import jQuery -->
 <script type="text/javascript" src="{{ asset('lib/jquery-3.3.1.min.js') }}"></script>
 <!--Import Materialize JS-->
 <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>

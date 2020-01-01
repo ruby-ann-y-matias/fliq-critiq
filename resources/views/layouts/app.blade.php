@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'FliQ CritiQ') }}</title>
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 
@@ -80,7 +80,7 @@
         @yield('content')
     </div>
 
-    <!-- Import jQuery -->      
+    <!-- Import jQuery -->
     <script type="text/javascript" src="{{ asset('lib/jquery-3.3.1.min.js') }}"></script>
 
     <!-- IMPORTS BOOTSTRAP SHOW PASSWORD PLUGIN -->
@@ -88,6 +88,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    
+
 </body>
 </html>

@@ -5,7 +5,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>FliQ CritiQ</title>
+        <meta property="og:title" content="FliQ CritiQ" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://fliqcritiq-env.bsbjtzbfp3.ap-southeast-1.elasticbeanstalk.com/" />
+        <meta property="og:image" content="{{ asset('storage/img/fliq-critiq-ogp-img.png') }}" />
+
+        <title>{{ config('app.name', 'FliQ CritiQ') }}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -21,6 +26,7 @@
                 font-weight: 900;
                 height: 100vh;
                 margin: 0;
+                transition: background-image 2s ease-in-out;
             }
 
             .full-height {
@@ -100,11 +106,11 @@
             </div>
         </div>
 
-        <!-- Import jQuery -->      
+        <!-- Import jQuery -->
         <script type="text/javascript" src="{{ asset('lib/jquery-3.3.1.min.js') }}"></script>
 
         <script type="text/javascript">
-            
+
             var bod = $("body");
 
             var bg = ["url('bg-img/curtains.jpg')", "url('bg-img/goldreel.jpg')"];

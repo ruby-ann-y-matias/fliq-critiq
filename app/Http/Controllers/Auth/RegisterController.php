@@ -70,7 +70,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'username' => $data['username'],
             'birthdate' => $data['birthdate'],
-            'image' => 'img/avatar-mizu.jpg'
+            'image' => 'img/rainbow-silhouette.png'
         ]);
 
         $role = Role::find(2);
